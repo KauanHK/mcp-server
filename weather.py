@@ -1,3 +1,4 @@
+import logging
 from typing import Any
 
 import httpx
@@ -93,8 +94,18 @@ Forecast: {period["detailedForecast"]}
 
 
 def main():
-    # Initialize and run the server
+
+    logging.basicConfig(
+        filename="weather_server.log",
+        level=logging.INFO,
+        format="%(asctime)s - %(levelname)s - %(message)s",
+    )
+
+    logging.info("Starting Weather MCP Server")
+
     mcp.run(transport="stdio")
+
+    logging.info("Weather MCP Server stopped")
 
 
 if __name__ == "__main__":
